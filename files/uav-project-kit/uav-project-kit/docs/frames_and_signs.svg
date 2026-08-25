@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 470" font-family="Helvetica, Arial, sans-serif">
+  <rect width="820" height="470" fill="#ffffff"/>
+  <text x="24" y="34" font-size="18" font-weight="bold" fill="#1D5E7A">Reference frames and sign conventions</text>
+  <text x="24" y="54" font-size="12" fill="#555">Frozen in Phase 0. Every derivative sign in Phase 2 depends on this page.</text>
+
+  <!-- NED frame panel -->
+  <rect x="24" y="72" width="360" height="200" fill="#F7F9FA" stroke="#CBD5D8"/>
+  <text x="38" y="94" font-size="13" font-weight="bold" fill="#1A1A1A">Inertial frame: NED</text>
+  <g stroke="#1D5E7A" stroke-width="2" fill="none" marker-end="url(#ar)">
+    <line x1="140" y1="200" x2="140" y2="120"/>
+    <line x1="140" y1="200" x2="250" y2="200"/>
+    <line x1="140" y1="200" x2="95" y2="245"/>
+  </g>
+  <text x="146" y="118" font-size="12" fill="#1D5E7A">x_n  North</text>
+  <text x="256" y="204" font-size="12" fill="#1D5E7A">y_n  East</text>
+  <text x="60" y="258" font-size="12" fill="#A33C2D" font-weight="bold">z_n  DOWN (+)</text>
+  <text x="38" y="238" font-size="12" fill="#A33C2D" font-weight="bold">h = -p_D</text>
+  <text x="38" y="256" font-size="11" fill="#555">p_D = -100  means  100 m ABOVE origin</text>
+
+  <!-- Body frame panel -->
+  <rect x="404" y="72" width="392" height="200" fill="#F7F9FA" stroke="#CBD5D8"/>
+  <text x="418" y="94" font-size="13" font-weight="bold" fill="#1A1A1A">Body frame: FRD (origin at CG)</text>
+  <!-- simple aircraft plan shape -->
+  <g fill="#DDE6EA" stroke="#8FA6AE">
+    <polygon points="530,180 620,175 640,180 620,185 530,185"/>
+    <polygon points="565,182 580,140 592,140 585,182"/>
+    <polygon points="565,183 580,225 592,225 585,183"/>
+    <polygon points="536,182 546,163 554,163 550,182"/>
+    <polygon points="536,183 546,202 554,202 550,183"/>
+  </g>
+  <g stroke="#1D5E7A" stroke-width="2" fill="none" marker-end="url(#ar)">
+    <line x1="580" y1="182" x2="700" y2="182"/>
+    <line x1="580" y1="182" x2="580" y2="248"/>
+  </g>
+  <line x1="580" y1="182" x2="640" y2="122" stroke="#1D5E7A" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="706" y="186" font-size="12" fill="#1D5E7A">x_b  nose</text>
+  <text x="646" y="118" font-size="12" fill="#1D5E7A">y_b  right wing</text>
+  <text x="586" y="262" font-size="12" fill="#1D5E7A">z_b  belly (down)</text>
+
+  <!-- Sign table -->
+  <rect x="24" y="288" width="772" height="160" fill="#FFFFFF" stroke="#CBD5D8"/>
+  <text x="38" y="310" font-size="13" font-weight="bold" fill="#1A1A1A">Control sign convention and the derivative signs it forces</text>
+  <g font-size="11.5" fill="#1A1A1A">
+    <text x="38"  y="334" font-weight="bold">Input</text>
+    <text x="180" y="334" font-weight="bold">Positive means</text>
+    <text x="400" y="334" font-weight="bold">Produces</text>
+    <text x="580" y="334" font-weight="bold">Forced derivative sign</text>
+
+    <text x="38"  y="356">delta_a</text>
+    <text x="180" y="356">right aileron up</text>
+    <text x="400" y="356">right-wing-down roll</text>
+    <text x="580" y="356" fill="#2E7D46">C_l_delta_a &gt; 0</text>
+
+    <text x="38"  y="376">delta_e</text>
+    <text x="180" y="376">trailing edge down</text>
+    <text x="400" y="376">nose-down pitch</text>
+    <text x="580" y="376" fill="#A33C2D">C_m_delta_e &lt; 0</text>
+
+    <text x="38"  y="396">delta_r</text>
+    <text x="180" y="396">trailing edge left</text>
+    <text x="400" y="396">nose-right yaw</text>
+    <text x="580" y="396" fill="#2E7D46">C_n_delta_r &gt; 0</text>
+
+    <text x="38"  y="416">delta_t</text>
+    <text x="180" y="416">0 idle, 1 full</text>
+    <text x="400" y="416">thrust along +x_b</text>
+    <text x="580" y="416" fill="#555">—</text>
+
+    <text x="38"  y="438" font-weight="bold">Always</text>
+    <text x="180" y="438">stability and damping</text>
+    <text x="400" y="438">opposes motion</text>
+    <text x="580" y="438" fill="#A33C2D">C_m_alpha, C_m_q, C_l_p, C_n_r &lt; 0</text>
+  </g>
+
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1D5E7A"/>
+    </marker>
+  </defs>
+</svg>

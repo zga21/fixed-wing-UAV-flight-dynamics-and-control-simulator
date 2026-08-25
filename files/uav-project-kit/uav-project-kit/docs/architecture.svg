@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 560" font-family="Helvetica, Arial, sans-serif">
+  <rect width="760" height="560" fill="#ffffff"/>
+  <text x="24" y="32" font-size="18" font-weight="bold" fill="#1D5E7A">Simulator architecture and module map</text>
+  <text x="24" y="52" font-size="12" fill="#555">Each box names the phase that builds it and the module that owns it.</text>
+
+  <defs>
+    <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#54707A"/>
+    </marker>
+  </defs>
+
+  <g font-size="12.5">
+    <g>
+      <rect x="250" y="76" width="260" height="44" rx="6" fill="#EEF4F6" stroke="#1D5E7A"/>
+      <text x="380" y="94" text-anchor="middle" font-weight="bold" fill="#1A1A1A">Reference / scenario</text>
+      <text x="380" y="110" text-anchor="middle" font-size="10.5" fill="#54707A">Phase 4 · control/reference.py</text>
+    </g>
+    <line x1="380" y1="120" x2="380" y2="140" stroke="#54707A" stroke-width="1.6" marker-end="url(#a2)"/>
+
+    <g>
+      <rect x="250" y="142" width="260" height="44" rx="6" fill="#EEF4F6" stroke="#1D5E7A"/>
+      <text x="380" y="160" text-anchor="middle" font-weight="bold" fill="#1A1A1A">Flight controller</text>
+      <text x="380" y="176" text-anchor="middle" font-size="10.5" fill="#54707A">Phase 4 baseline.py · Phase 6 ndi.py</text>
+    </g>
+    <line x1="380" y1="186" x2="380" y2="206" stroke="#54707A" stroke-width="1.6" marker-end="url(#a2)"/>
+
+    <g>
+      <rect x="250" y="208" width="260" height="44" rx="6" fill="#F4EEF6" stroke="#6B4B7A"/>
+      <text x="380" y="226" text-anchor="middle" font-weight="bold" fill="#1A1A1A">Actuators</text>
+      <text x="380" y="242" text-anchor="middle" font-size="10.5" fill="#54707A">Phase 5 · hardware/actuator.py</text>
+    </g>
+    <line x1="380" y1="252" x2="380" y2="272" stroke="#54707A" stroke-width="1.6" marker-end="url(#a2)"/>
+
+    <g>
+      <rect x="220" y="274" width="320" height="76" rx="6" fill="#EAF3EC" stroke="#2E7D46"/>
+      <text x="380" y="296" text-anchor="middle" font-weight="bold" fill="#1A1A1A">6-DOF aircraft plant</text>
+      <text x="380" y="314" text-anchor="middle" font-size="10.5" fill="#54707A">Phase 1 dynamics.py + integrate.py</text>
+      <text x="380" y="330" text-anchor="middle" font-size="10.5" fill="#54707A">Phase 2 aero.py + propulsion.py + atmosphere.py</text>
+    </g>
+
+    <g>
+      <rect x="30" y="274" width="160" height="76" rx="6" fill="#F4EEF6" stroke="#6B4B7A"/>
+      <text x="110" y="300" text-anchor="middle" font-weight="bold" fill="#1A1A1A">Environment</text>
+      <text x="110" y="318" text-anchor="middle" font-size="10.5" fill="#54707A">Phase 5</text>
+      <text x="110" y="334" text-anchor="middle" font-size="10.5" fill="#54707A">environment/wind.py</text>
+    </g>
+    <line x1="190" y1="312" x2="216" y2="312" stroke="#54707A" stroke-width="1.6" marker-end="url(#a2)"/>
+
+    <line x1="380" y1="350" x2="380" y2="370" stroke="#54707A" stroke-width="1.6" marker-end="url(#a2)"/>
+
+    <g>
+      <rect x="250" y="372" width="260" height="44" rx="6" fill="#F4EEF6" stroke="#6B4B7A"/>
+      <text x="380" y="390" text-anchor="middle" font-weight="bold" fill="#1A1A1A">Sensors</text>
+      <text x="380" y="406" text-anchor="middle" font-size="10.5" fill="#54707A">Phase 5 · hardware/sensors.py</text>
+    </g>
+    <line x1="380" y1="416" x2="380" y2="436" stroke="#54707A" stroke-width="1.6" marker-end="url(#a2)"/>
+
+    <g>
+      <rect x="250" y="438" width="260" height="44" rx="6" fill="#F4EEF6" stroke="#6B4B7A"/>
+      <text x="380" y="456" text-anchor="middle" font-weight="bold" fill="#1A1A1A">State estimator (EKF)</text>
+      <text x="380" y="472" text-anchor="middle" font-size="10.5" fill="#54707A">Phase 5 · estimation/ekf.py</text>
+    </g>
+
+    <path d="M250 460 L150 460 L150 164 L246 164" fill="none" stroke="#54707A" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#a2)"/>
+    <text x="60" y="316" font-size="11" fill="#54707A"></text>
+    <text x="98" y="200" font-size="11" fill="#54707A">feedback</text>
+
+    <g>
+      <rect x="560" y="274" width="170" height="208" rx="6" fill="#FBF6EA" stroke="#C99A2E"/>
+      <text x="645" y="298" text-anchor="middle" font-weight="bold" fill="#1A1A1A">Outside the loop</text>
+      <text x="576" y="322" font-size="11" fill="#54707A">Phase 3  trim.py</text>
+      <text x="576" y="340" font-size="11" fill="#54707A">Phase 3  linearise.py</text>
+      <text x="576" y="358" font-size="11" fill="#54707A">Phase 7  optimise/</text>
+      <text x="576" y="376" font-size="11" fill="#54707A">Phase 8  models/gp_residual.py</text>
+      <text x="576" y="394" font-size="11" fill="#54707A">Phase 9  montecarlo/</text>
+      <text x="576" y="412" font-size="11" fill="#54707A">Phase 10 analysis/</text>
+      <text x="576" y="444" font-size="10.5" fill="#8A6A1E">These orchestrate or analyse</text>
+      <text x="576" y="459" font-size="10.5" fill="#8A6A1E">the loop; they never run</text>
+      <text x="576" y="474" font-size="10.5" fill="#8A6A1E">inside it.</text>
+    </g>
+
+    <rect x="30" y="500" width="700" height="42" rx="6" fill="#F7F9FA" stroke="#CBD5D8"/>
+    <text x="46" y="518" font-size="11.5" font-weight="bold" fill="#1A1A1A">Swap points:</text>
+    <text x="132" y="518" font-size="11.5" fill="#54707A">AeroModel (Phase 2 linear -&gt; Phase 8 GP)  ·  Controller (Phase 4 PID -&gt; Phase 6 NDI)</text>
+    <text x="46" y="534" font-size="11.5" fill="#54707A">Both are protocols. Swapping either must require zero edits to dynamics.py or integrate.py.</text>
+  </g>
+</svg>
