@@ -1,0 +1,77 @@
+name: aerosonde_uav_v1
+conventions_version: v1
+
+mass:
+  m: 13.5
+  I_xx: 0.8244
+  I_yy: 1.135
+  I_zz: 1.759
+  I_xz: 0.1204
+  x_cg_frac: 0.25
+
+geometry:
+  S: 0.55
+  b: 2.8956
+  c_bar: 0.18994
+
+propulsion:
+  S_prop: 0.2027
+  C_prop: 1.0
+  k_motor: 80.0
+
+aero:
+  C_L_0: 0.28
+  C_L_alpha: 3.45
+  C_L_q: 0.0
+  C_L_delta_e: -0.36
+  C_D_0: 0.03
+  C_D_alpha: 0.30
+  C_D_q: 0.0
+  C_D_delta_e: 0.0
+  oswald_e: 0.9
+  C_m_0: -0.02338
+  C_m_alpha: -0.38
+  C_m_q: -3.6
+  C_m_delta_e: -0.5
+  C_Y_0: 0.0
+  C_Y_beta: -0.98
+  C_Y_p: 0.0
+  C_Y_r: 0.0
+  C_Y_delta_a: 0.0
+  C_Y_delta_r: 0.17
+  C_l_0: 0.0
+  C_l_beta: -0.12
+  C_l_p: -0.26
+  C_l_r: 0.14
+  C_l_delta_a: 0.08
+  C_l_delta_r: -0.105
+  C_n_0: 0.0
+  C_n_beta: 0.25
+  C_n_p: 0.022
+  C_n_r: -0.35
+  C_n_delta_a: 0.06
+  C_n_delta_r: 0.032
+
+actuators:
+  aileron: {min_deg: -25.0, max_deg: 25.0, rate_dps: 286.0, tau: 0.05}
+  elevator: {min_deg: -25.0, max_deg: 25.0, rate_dps: 286.0, tau: 0.05}
+  rudder: {min_deg: -25.0, max_deg: 25.0, rate_dps: 286.0, tau: 0.05}
+  throttle: {min: 0.0, max: 1.0, rate: 2.0, tau: 0.20}
+
+envelope:
+  V_min: 15.0
+  V_nominal: 25.0
+  V_max: 40.0
+  h_min: 0.0
+  h_nominal: 100.0
+  h_max: 1000.0
+  alpha_min_deg: -10.0
+  alpha_max_deg: 12.0
+  beta_max_deg: 15.0
+  phi_max_deg: 60.0
+  load_factor_min: -1.0
+  load_factor_max: 4.0
+
+integration:
+  method: rk4
+  dt: 0.002
