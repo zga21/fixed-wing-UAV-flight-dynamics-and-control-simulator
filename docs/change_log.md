@@ -1,5 +1,22 @@
 # Project Change Log
 
+## 2026-08-26 - Phase 2 Aerodynamics, Propulsion, And Plant
+
+- Added ISA troposphere atmosphere modelling with density ratio and hot/cold day
+  support.
+- Added air-relative velocity and air-data calculation with wind already wired
+  through the interface for Phase 5.
+- Added the `AeroModel` protocol and `LinearAeroModel` coefficient build-up
+  using the v1 polar drag choice recorded in `docs/phase2_model_choices.md`.
+- Added aerodynamic force/moment assembly, propeller thrust, and full plant
+  composition over rigid-body dynamics.
+- Added a minimal `python -m uav_sim.cli fly` smoke-flight command.
+- Added Phase 2 unit tests and gates for atmosphere references, force signs,
+  aerodynamic monotonicity, control signs, propulsion behaviour, and plausible
+  open-loop flight.
+- Recorded that the source Aerosonde `k_motor = 80.0` value gives high static
+  thrust under the simple Phase 2 formula and is kept for v1 source fidelity.
+
 ## 2026-08-26 - Phase 1 Rigid-Body Core
 
 - Added scalar-first body-to-NED quaternion utilities in `src/uav_sim/rotations.py`,
