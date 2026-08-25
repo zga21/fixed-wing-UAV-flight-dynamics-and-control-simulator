@@ -19,11 +19,22 @@ propulsion:
   C_prop: 1.0
   k_motor: 80.0
 
+# Aerosonde linear coefficient set (Shalaby aerosonde.m / Beard & McLain).
+# See docs/sources.bib. Do not mix in values from the newer mavsim Python set
+# (C_D_0=0.0437, C_L_0=0.23, nonlinear lift blend M/alpha_0) — different dataset.
 aero:
   C_L_0: 0.28
   C_L_alpha: 3.45
   C_L_q: 0.0
+  # C_L_delta_e is NEGATIVE in the source dataset. This is intentional and
+  # faithful to the reference — do not "correct" the sign. C_m_delta_e < 0
+  # (nose-down for positive/TE-down elevator) is the stability-critical one.
   C_L_delta_e: -0.36
+  # Drag model: v1 freezes parameters for BOTH a linear form
+  # (C_D = C_D_0 + C_D_alpha*alpha) and a polar form
+  # (C_D = C_D_0 + C_L^2 / (pi * oswald_e * AR)). Phase 2 (T2.3) MUST declare
+  # which form it uses and record that choice; the unused parameter stays for
+  # reference only. Switching forms after Phase 1 is a benchmark change (v2).
   C_D_0: 0.03
   C_D_alpha: 0.30
   C_D_q: 0.0
@@ -49,7 +60,16 @@ aero:
   C_n_beta: 0.25
   C_n_p: 0.022
   C_n_r: -0.35
+  # C_n_delta_a is POSITIVE (proverse aileron yaw) in the source dataset.
+  # Intentional and faithful to the reference — not adverse yaw. Do not flip.
   C_n_delta_a: 0.06
+  # Rudder column: this project defines positive delta_r = trailing-edge LEFT
+  # -> nose-RIGHT yaw, which is the OPPOSITE of the source convention. Every
+  # derivative w.r.t. delta_r is therefore sign-flipped from the source:
+  #   C_Y_delta_r: source -0.17 -> +0.17
+  #   C_l_delta_r: source +0.105 -> -0.105
+  #   C_n_delta_r: source -0.032 -> +0.032
+  # See docs/conventions.md sec 4.
   C_n_delta_r: 0.032
 
 actuators:

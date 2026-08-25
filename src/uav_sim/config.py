@@ -10,6 +10,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+from functools import cached_property
 from pathlib import Path
 from typing import Any, Literal
 
@@ -38,9 +39,14 @@ class MassProperties(FrozenModel):
     I_xz: float = 0.0
     x_cg_frac: float = Field(ge=0, le=1)
 
-    @property
+    @cached_property
     def inertia_tensor(self) -> np.ndarray:
-        """(3, 3) body-axis inertia tensor, kg m^2."""
+        """(3, 3) body-axis inertia tensor, kg m^2.
+
+        Cached: built once per config object. The dynamics loop calls this
+        millions of times per Monte Carlo campaign (see T1.3), so it must not
+        be rebuilt on every access.
+        """
         return np.array(
             [
                 [self.I_xx, 0.0, -self.I_xz],
@@ -50,9 +56,13 @@ class MassProperties(FrozenModel):
             dtype=np.float64,
         )
 
-    @property
+    @cached_property
     def inertia_inverse(self) -> np.ndarray:
-        """(3, 3) inverse inertia tensor, precomputed outside the dynamics loop."""
+        """(3, 3) inverse inertia tensor, precomputed outside the dynamics loop.
+
+        Cached: T1.3 requires the dynamics derivative to use a precomputed
+        inverse and never call ``np.linalg.inv`` inside the hot loop.
+        """
         return np.linalg.inv(self.inertia_tensor)
 
     @model_validator(mode="after")
@@ -112,7 +122,7 @@ class AeroDerivatives(FrozenModel):
     C_n_delta_a: float
     C_n_delta_r: float
 
-    @field_validator("C_m_alpha", "C_m_q", "C_l_p", "C_n_r")
+    @field_validator("C_m_alpha", "C_m_q", "C_l_p", "C_n_r", "C_l_beta", "C_Y_beta")
     @classmethod
     def must_be_negative(cls, value: float, info) -> float:
         if value >= 0.0:

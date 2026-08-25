@@ -33,6 +33,10 @@ Silent benchmark edits are treated as invalidating previous results.
 - State vector layout.
 - Control input signs.
 - Aircraft mass, geometry, inertia, propulsion, and aero derivatives.
+  - Note: `config/aircraft_v1.yaml` freezes parameters for two alternative drag
+    models (linear `C_D_alpha`, and polar `oswald_e`). Phase 2 (T2.3) must
+    declare which form is authoritative and record that choice. Changing the
+    drag-model form after Phase 1 is a benchmark change requiring v2.
 - Flight envelope and constraint limits.
 - Actuator limits and actuator operation order.
 - Integration method, step size, and quaternion renormalisation rule.
