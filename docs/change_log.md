@@ -1,5 +1,20 @@
 # Project Change Log
 
+## 2026-08-26 - Phase 1 Rigid-Body Core
+
+- Added scalar-first body-to-NED quaternion utilities in `src/uav_sim/rotations.py`,
+  including DCM conversion, Euler I/O conversion, quaternion derivative,
+  normalisation, and Hamilton product.
+- Added the canonical 13-state layout and boundary accessors in
+  `src/uav_sim/state.py`; raw state slicing outside that module is now enforced
+  by test.
+- Added gravity and pure 6-DOF rigid-body derivatives in
+  `src/uav_sim/dynamics.py`, including Coriolis and gyroscopic terms.
+- Added fixed-step RK4 integration and a deterministic simulation loop in
+  `src/uav_sim/integrate.py`, plus `SimResult` for logged trajectories.
+- Added Phase 1 unit tests and gate tests covering free fall, ballistic motion,
+  quaternion norm, angular momentum conservation, and energy conservation.
+
 ## 2026-08-25 - Phase 0 Benchmark Clarifications
 
 - Clarified that `config/aircraft_v1.yaml` uses the Aerosonde linear
