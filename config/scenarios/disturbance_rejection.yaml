@@ -1,0 +1,7 @@
+name: disturbance_rejection
+duration: 60.0
+initial: {V: 25.0, altitude: 100.0, heading_deg: 0.0}
+segments:
+  - {t: 0.0, altitude: 100.0, airspeed: 25.0, heading_deg: 0.0}
+  - {t: 20.0, altitude: 105.0, airspeed: 25.0, heading_deg: 0.0}
+  - {t: 40.0, altitude: 100.0, airspeed: 25.0, heading_deg: 20.0}

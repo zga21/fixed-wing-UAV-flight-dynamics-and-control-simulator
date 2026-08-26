@@ -1,0 +1,8 @@
+name: step_responses
+duration: 70.0
+initial: {V: 25.0, altitude: 100.0, heading_deg: 0.0}
+segments:
+  - {t: 0.0, altitude: 100.0, airspeed: 25.0, heading_deg: 0.0}
+  - {t: 10.0, altitude: 150.0, airspeed: 25.0, heading_deg: 0.0}
+  - {t: 35.0, altitude: 150.0, airspeed: 30.0, heading_deg: 0.0}
+  - {t: 55.0, altitude: 150.0, airspeed: 30.0, heading_deg: 90.0}

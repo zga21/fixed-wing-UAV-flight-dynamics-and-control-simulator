@@ -1,0 +1,9 @@
+name: mission_a_climb_turn_cruise
+duration: 90.0
+initial: {V: 25.0, altitude: 100.0, heading_deg: 0.0}
+segments:
+  - {t: 0.0, altitude: 100.0, airspeed: 25.0, heading_deg: 0.0}
+  - {t: 10.0, altitude: 150.0, airspeed: 25.0, heading_deg: 0.0}
+  - {t: 35.0, altitude: 150.0, airspeed: 28.0, heading_deg: 90.0}
+  - {t: 60.0, altitude: 120.0, airspeed: 25.0, heading_deg: 180.0}
+  - {t: 80.0, altitude: 120.0, airspeed: 23.0, heading_deg: 180.0}

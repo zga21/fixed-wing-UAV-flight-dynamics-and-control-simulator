@@ -135,9 +135,16 @@ def _controller_output(
     if controller is None:
         return np.zeros(4, dtype=np.float64)
     if hasattr(controller, "update"):
-        value = controller.update(t, x.copy(), cfg, rng)
+        try:
+            from uav_sim.control.base import Reference
+
+            value = controller.update(x.copy(), Reference(), t, cfg.integration.dt)
+        except TypeError:
+            value = controller.update(t, x.copy(), cfg, rng)
     else:
         value = controller(t, x.copy(), cfg, rng)
+    if hasattr(value, "to_array"):
+        value = value.to_array()
     arr = np.asarray(value, dtype=np.float64)
     if arr.shape != (4,):
         raise ValueError(f"controller output must have shape (4,), got {arr.shape}")

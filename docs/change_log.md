@@ -1,5 +1,17 @@
 # Project Change Log
 
+## 2026-08-26 - Phase 4 Baseline Cascaded PID
+
+- Added the controller protocol, `Reference` and `Controls` data contracts, and
+  a protocol-compliant `ZeroController` for harness checks.
+- Added a derivative-on-measurement PID with back-calculation anti-windup, plus
+  cascaded rate, attitude, heading, and TECS-lite outer loops.
+- Added declarative scenario loading, deterministic scenario execution, frozen
+  mission success criteria, and flat metrics for later optimisation and Monte
+  Carlo phases.
+- Added the Phase 4 gate, baseline scenario figures, and committed baseline
+  performance record used as the conventional-controller reference.
+
 ## 2026-08-26 - Phase 3 Trim, Linearisation, And Modes
 
 - Added a bounded steady-flight trim solver for wings-level coordinated flight,

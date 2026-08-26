@@ -1,12 +1,13 @@
-"""Placeholder reproduction entrypoint.
+"""Regenerate committed validation evidence."""
 
-Later phases will add figure and report generation here. During Phase 0, the
-script exists so the Makefile target is stable.
-"""
+from record_baseline import write_record
+from validation_report import main as phase3_validation_main
 
 
 def main() -> None:
-    print("Phase 0 complete: no generated results to reproduce yet.")
+    phase3_validation_main()
+    path = write_record()
+    print(path)
 
 
 if __name__ == "__main__":
