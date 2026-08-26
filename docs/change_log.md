@@ -1,5 +1,17 @@
 # Project Change Log
 
+## 2026-08-26 - Phase 3 Trim, Linearisation, And Modes
+
+- Added a bounded steady-flight trim solver for wings-level coordinated flight,
+  including residual checks against the real plant derivative and clear
+  rejection outside the v1 envelope.
+- Added central-difference quaternion and Euler linearisation utilities, plus
+  longitudinal/lateral decoupling checks for symmetric trim.
+- Added mode identification for short period, phugoid, dutch roll, roll
+  subsidence, and spiral poles, with v1 Aerosonde-specific plausibility checks.
+- Added Phase 3 validation notes recording why low-speed `-5 deg` descent is
+  not reachable without changing the frozen thrust/drag benchmark model.
+
 ## 2026-08-26 - Phase 2 Clarification And Test Markers
 
 - Marked the parabolic polar drag law as the resolved authoritative v1 Phase 2
