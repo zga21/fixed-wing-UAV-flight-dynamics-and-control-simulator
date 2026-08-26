@@ -34,9 +34,11 @@ Silent benchmark edits are treated as invalidating previous results.
 - Control input signs.
 - Aircraft mass, geometry, inertia, propulsion, and aero derivatives.
   - Note: `config/aircraft_v1.yaml` freezes parameters for two alternative drag
-    models (linear `C_D_alpha`, and polar `oswald_e`). Phase 2 (T2.3) must
-    declare which form is authoritative and record that choice. Changing the
-    drag-model form after Phase 1 is a benchmark change requiring v2.
+    models (linear `C_D_alpha`, and polar `oswald_e`). RESOLVED in Phase 2
+    (T2.3): the authoritative form is the parabolic polar
+    `C_D = C_D_0 + C_L^2 / (pi * oswald_e * AR)`
+    (`src/uav_sim/aero.py::LinearAeroModel`); `C_D_alpha` is retained but unused.
+    Changing the drag-model form after Phase 1 is a benchmark change requiring v2.
 - Flight envelope and constraint limits.
 - Actuator limits and actuator operation order.
 - Integration method, step size, and quaternion renormalisation rule.

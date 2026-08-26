@@ -1,5 +1,15 @@
 # Project Change Log
 
+## 2026-08-26 - Phase 2 Clarification And Test Markers
+
+- Marked the parabolic polar drag law as the resolved authoritative v1 Phase 2
+  drag model in `config/aircraft_v1.yaml` and `docs/benchmark_contract.md`.
+- Documented Phase 2 propulsion assumptions in `src/uav_sim/propulsion.py`,
+  including omitted propeller reaction torque, gyroscopic precession, and
+  p-factor.
+- Marked long-running integration and plant smoke tests as `slow`, keeping the
+  fast test loop focused while preserving full-suite coverage.
+
 ## 2026-08-26 - Phase 2 Aerodynamics, Propulsion, And Plant
 
 - Added ISA troposphere atmosphere modelling with density ratio and hot/cold day

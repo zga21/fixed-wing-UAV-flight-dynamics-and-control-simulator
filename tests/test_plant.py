@@ -24,6 +24,7 @@ def _constant_controller(controls):
     return controller
 
 
+@pytest.mark.slow
 def test_level_flight_near_trim_persists(cfg):
     plant = AircraftPlant(cfg)
     result = simulate(
@@ -40,6 +41,7 @@ def test_level_flight_near_trim_persists(cfg):
     assert abs(altitude[-1] - altitude[0]) < 10.0
 
 
+@pytest.mark.slow
 def test_pull_up_exchanges_speed_for_altitude(cfg):
     plant = AircraftPlant(cfg)
     controls = _near_trim_controls()
@@ -59,6 +61,7 @@ def test_pull_up_exchanges_speed_for_altitude(cfg):
     assert airspeeds[-1] < airspeeds[0]
 
 
+@pytest.mark.slow
 def test_aileron_step_produces_positive_roll_rate(cfg):
     plant = AircraftPlant(cfg)
     controls = _near_trim_controls()
@@ -75,6 +78,7 @@ def test_aileron_step_produces_positive_roll_rate(cfg):
     assert result.x[:, IDX_OMEGA][:, 0].max() > 0.1
 
 
+@pytest.mark.slow
 def test_symmetric_flight_stays_symmetric(cfg):
     plant = AircraftPlant(cfg)
     result = simulate(
@@ -92,6 +96,7 @@ def test_symmetric_flight_stays_symmetric(cfg):
     np.testing.assert_allclose(euler[:, [0, 2]], 0.0, atol=0.0)
 
 
+@pytest.mark.slow
 def test_no_nan_over_120_second_near_trim_simulation(cfg):
     plant = AircraftPlant(cfg)
     result = simulate(

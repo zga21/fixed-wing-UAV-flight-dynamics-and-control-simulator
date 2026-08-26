@@ -30,13 +30,13 @@ aero:
   # faithful to the reference — do not "correct" the sign. C_m_delta_e < 0
   # (nose-down for positive/TE-down elevator) is the stability-critical one.
   C_L_delta_e: -0.36
-  # Drag model: v1 freezes parameters for BOTH a linear form
-  # (C_D = C_D_0 + C_D_alpha*alpha) and a polar form
-  # (C_D = C_D_0 + C_L^2 / (pi * oswald_e * AR)). Phase 2 (T2.3) MUST declare
-  # which form it uses and record that choice; the unused parameter stays for
-  # reference only. Switching forms after Phase 1 is a benchmark change (v2).
+  # Drag model: RESOLVED in Phase 2 (T2.3). The AUTHORITATIVE form is the
+  # parabolic polar C_D = C_D_0 + C_L^2 / (pi * oswald_e * AR), implemented in
+  # src/uav_sim/aero.py::LinearAeroModel. C_D_alpha below is therefore RETAINED
+  # BUT UNUSED — kept for provenance/traceability, not read by any code.
+  # Switching drag-model form is a benchmark change (requires v2).
   C_D_0: 0.03
-  C_D_alpha: 0.30
+  C_D_alpha: 0.30   # unused: see drag-model note above (polar form is authoritative)
   C_D_q: 0.0
   C_D_delta_e: 0.0
   oswald_e: 0.9

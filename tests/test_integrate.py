@@ -1,6 +1,7 @@
 """RK4 and simulation loop tests."""
 
 import numpy as np
+import pytest
 
 from uav_sim.dynamics import gravity_body, rigid_body_derivatives
 from uav_sim.integrate import rk4_step, simulate
@@ -24,6 +25,7 @@ def test_rk4_error_reduces_by_fourth_order_factor():
     assert coarse / fine > 12.0
 
 
+@pytest.mark.slow
 def test_ballistic_step_convergence_between_half_steps(cfg):
     x0 = make_state(
         [0.0, 0.0, -1000.0],
@@ -49,6 +51,7 @@ def test_ballistic_step_convergence_between_half_steps(cfg):
     np.testing.assert_allclose(coarse.x, fine.x, rtol=1e-3, atol=1e-9)
 
 
+@pytest.mark.slow
 def test_quaternion_norm_is_maintained_for_constant_rate(cfg):
     omega = np.array([0.1, 0.2, 0.3])
     x0 = make_state(

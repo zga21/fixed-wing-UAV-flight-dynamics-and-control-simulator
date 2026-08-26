@@ -1,4 +1,16 @@
-"""Simple propeller thrust model."""
+"""Simple propeller thrust model.
+
+Theory / assumptions (Phase 2):
+- Momentum-theory (actuator-disk) thrust, Beard & McLain eq. 4.20 form:
+  ``T = 0.5 * rho * S_prop * C_prop * ((k_motor * delta_t)**2 - V**2)``,
+  clamped to non-negative values.
+- Thrust acts along ``+x_b`` through the CG, so it contributes NO moment.
+- KNOWN SIMPLIFICATIONS, deliberately omitted: propeller reaction torque
+  (``-Q`` about the roll axis), gyroscopic precession from the spinning prop,
+  and p-factor. These are small for this airframe but are a modelling choice,
+  not an oversight. If Phase 6 NDI needs a higher-fidelity plant model, add
+  them here (and, being a benchmark change, bump to a new config version).
+"""
 
 from __future__ import annotations
 
