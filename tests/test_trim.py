@@ -79,3 +79,18 @@ def test_low_speed_steep_descent_is_rejected_by_v1_physics(cfg, plant):
     """Frozen v1 has thrust-only propulsion and no windmilling drag device."""
     with pytest.raises(TrimNotConverged):
         trim(18.0, np.deg2rad(-5.0), 100.0, cfg, plant)
+
+
+def test_cruise_trim_alpha_is_flagged_inside_envelope(cfg, plant):
+    point = trim(25.0, 0.0, 100.0, cfg, plant)
+    assert point.alpha_in_envelope is True
+
+
+def test_low_speed_trim_flags_and_warns_out_of_envelope_alpha(cfg, plant):
+    """18 m/s level trim needs alpha > envelope alpha_max: convergent but flagged."""
+    with pytest.warns(UserWarning, match="outside the frozen validity"):
+        point = trim(18.0, 0.0, 100.0, cfg, plant)
+
+    assert point.residual < 1e-10
+    assert point.alpha_in_envelope is False
+    assert point.alpha > cfg.envelope.alpha_max_rad

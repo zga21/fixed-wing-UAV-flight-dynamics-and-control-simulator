@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import warnings
 from dataclasses import dataclass
 
 import numpy as np
@@ -28,6 +29,7 @@ class TrimPoint:
     theta: float
     residual: float
     iterations: int
+    alpha_in_envelope: bool
 
 
 class TrimNotConverged(Exception):
@@ -63,11 +65,25 @@ def trim(
     x = _trim_state(V, gamma, altitude, alpha, phi)
     u = np.array([0.0, delta_e, 0.0, delta_t], dtype=np.float64)
     residual = _dynamic_residual_norm(x, u, plant)
-    if not result.success or residual > 1e-8:
+    # Convergence criterion is the frozen conventions.md sec 11 value, 1e-10.
+    if not result.success or residual > 1e-10:
         raise TrimNotConverged(
             "trim failed for "
             f"V={V:.3g} m/s, gamma={np.rad2deg(gamma):.3g} deg, "
             f"h={altitude:.3g} m: residual={residual:.3e}"
+        )
+    alpha_in_envelope = bool(
+        cfg.envelope.alpha_min_rad <= alpha <= cfg.envelope.alpha_max_rad
+    )
+    if not alpha_in_envelope:
+        warnings.warn(
+            f"trim at V={V:.3g} m/s, gamma={np.rad2deg(gamma):.3g} deg converged to "
+            f"alpha={np.rad2deg(alpha):.2f} deg, outside the frozen validity "
+            f"envelope [{np.rad2deg(cfg.envelope.alpha_min_rad):.1f}, "
+            f"{np.rad2deg(cfg.envelope.alpha_max_rad):.1f}] deg. The linear aero "
+            "model has no stall and is extrapolating here; treat this trim as "
+            "exploratory, not a validated operating point.",
+            stacklevel=2,
         )
     return TrimPoint(
         x=x,
@@ -79,6 +95,7 @@ def trim(
         theta=float(alpha + gamma),
         residual=float(residual),
         iterations=int(result.nfev),
+        alpha_in_envelope=alpha_in_envelope,
     )
 
 
