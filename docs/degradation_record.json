@@ -1,0 +1,658 @@
+{
+  "config_hash": "0f311f88ab1f",
+  "dominant_mechanism": "C2 sensors+EKF",
+  "effective_flights": 108,
+  "git_commit": "0bea35b752102418544f2c3653af578053311a83",
+  "scenarios": [
+    "config/scenarios/mission_a.yaml",
+    "config/scenarios/step_responses.yaml",
+    "config/scenarios/disturbance_rejection.yaml"
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "summary": [
+    {
+      "change_percent": -1.5565415137623596e-14,
+      "configuration": "C0 perfect",
+      "mean": 2.8530508561679295,
+      "metric": "control_effort",
+      "p95": 3.561291712508658
+    },
+    {
+      "change_percent": 0.0,
+      "configuration": "C0 perfect",
+      "mean": 5.409763568376726,
+      "metric": "control_rate_effort",
+      "p95": 7.544190273672331
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C0 perfect",
+      "mean": 0.0,
+      "metric": "disturbance_recovery_time",
+      "p95": 0.0
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C0 perfect",
+      "mean": 0.0,
+      "metric": "envelope_violations",
+      "p95": 0.0
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C0 perfect",
+      "mean": 0.0,
+      "metric": "integration_failures",
+      "p95": 0.0
+    },
+    {
+      "change_percent": 0.0,
+      "configuration": "C0 perfect",
+      "mean": 9.09002763126907,
+      "metric": "max_V_error",
+      "p95": 12.87501460045904
+    },
+    {
+      "change_percent": 0.0,
+      "configuration": "C0 perfect",
+      "mean": 35.040198601540055,
+      "metric": "max_h_error",
+      "p95": 50.0
+    },
+    {
+      "change_percent": 0.0,
+      "configuration": "C0 perfect",
+      "mean": 1.7162123547544184,
+      "metric": "max_load_factor",
+      "p95": 1.9995996244104448
+    },
+    {
+      "change_percent": 0.0,
+      "configuration": "C0 perfect",
+      "mean": 13.347958132753826,
+      "metric": "overshoot_h",
+      "p95": 31.88457389295715
+    },
+    {
+      "change_percent": 0.0,
+      "configuration": "C0 perfect",
+      "mean": 2.0640446717309757,
+      "metric": "rmse_V",
+      "p95": 2.9646282696784816
+    },
+    {
+      "change_percent": 0.0,
+      "configuration": "C0 perfect",
+      "mean": 7.751457147004623,
+      "metric": "rmse_h",
+      "p95": 11.272126843131527
+    },
+    {
+      "change_percent": -1.7714781134343916e-14,
+      "configuration": "C0 perfect",
+      "mean": 0.15668031913653593,
+      "metric": "rmse_phi",
+      "p95": 0.2182401072884364
+    },
+    {
+      "change_percent": -1.4877424640962715e-14,
+      "configuration": "C0 perfect",
+      "mean": 0.09328084761124641,
+      "metric": "rmse_theta",
+      "p95": 0.09607724201842964
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C0 perfect",
+      "mean": 0.0,
+      "metric": "saturation_fraction",
+      "p95": 0.0
+    },
+    {
+      "change_percent": -2.952393638891627e-14,
+      "configuration": "C0 perfect",
+      "mean": 12.03333333333641,
+      "metric": "settling_time_h",
+      "p95": 14.200000000020125
+    },
+    {
+      "change_percent": 0.6409588388286185,
+      "configuration": "C1 actuators",
+      "mean": 2.871337737806814,
+      "metric": "control_effort",
+      "p95": 3.610958498982065
+    },
+    {
+      "change_percent": -18.665647024077714,
+      "configuration": "C1 actuators",
+      "mean": 4.399996195866375,
+      "metric": "control_rate_effort",
+      "p95": 6.125152161886399
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C1 actuators",
+      "mean": 0.0,
+      "metric": "disturbance_recovery_time",
+      "p95": 0.0
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C1 actuators",
+      "mean": 1.0,
+      "metric": "envelope_violations",
+      "p95": 3.0
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C1 actuators",
+      "mean": 0.0,
+      "metric": "integration_failures",
+      "p95": 0.0
+    },
+    {
+      "change_percent": 10.160304530036175,
+      "configuration": "C1 actuators",
+      "mean": 10.013602120470441,
+      "metric": "max_V_error",
+      "p95": 14.103549494048202
+    },
+    {
+      "change_percent": -0.001675075463926855,
+      "configuration": "C1 actuators",
+      "mean": 35.03961165177077,
+      "metric": "max_h_error",
+      "p95": 50.0
+    },
+    {
+      "change_percent": 0.3831118849008575,
+      "configuration": "C1 actuators",
+      "mean": 1.7227873682556194,
+      "metric": "max_load_factor",
+      "p95": 2.0105765897480206
+    },
+    {
+      "change_percent": -0.024581295325950644,
+      "configuration": "C1 actuators",
+      "mean": 13.34467703174523,
+      "metric": "overshoot_h",
+      "p95": 31.882225891348583
+    },
+    {
+      "change_percent": -1.5000095284531247,
+      "configuration": "C1 actuators",
+      "mean": 2.033083804983482,
+      "metric": "rmse_V",
+      "p95": 2.9113629581885974
+    },
+    {
+      "change_percent": 1.488348026119087,
+      "configuration": "C1 actuators",
+      "mean": 7.866825806447533,
+      "metric": "rmse_h",
+      "p95": 11.41715130803602
+    },
+    {
+      "change_percent": -0.45632974386775105,
+      "configuration": "C1 actuators",
+      "mean": 0.15596534023752903,
+      "metric": "rmse_phi",
+      "p95": 0.21660780997381288
+    },
+    {
+      "change_percent": 0.47404328877740437,
+      "configuration": "C1 actuators",
+      "mean": 0.09372303920906222,
+      "metric": "rmse_theta",
+      "p95": 0.0965936803479591
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C1 actuators",
+      "mean": 0.0,
+      "metric": "saturation_fraction",
+      "p95": 0.0
+    },
+    {
+      "change_percent": -0.2770083102485861,
+      "configuration": "C1 actuators",
+      "mean": 12.000000000003158,
+      "metric": "settling_time_h",
+      "p95": 14.100000000020358
+    },
+    {
+      "change_percent": 171.83737290060373,
+      "configuration": "C2 sensors+EKF",
+      "mean": 7.755658494925083,
+      "metric": "control_effort",
+      "p95": 15.494370254910113
+    },
+    {
+      "change_percent": 3820.5795195755754,
+      "configuration": "C2 sensors+EKF",
+      "mean": 212.09408251923875,
+      "metric": "control_rate_effort",
+      "p95": 403.0040096231911
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C2 sensors+EKF",
+      "mean": 0.0,
+      "metric": "disturbance_recovery_time",
+      "p95": 0.0
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C2 sensors+EKF",
+      "mean": 233.22222222222223,
+      "metric": "envelope_violations",
+      "p95": 503.1999999999996
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C2 sensors+EKF",
+      "mean": 0.0,
+      "metric": "integration_failures",
+      "p95": 0.0
+    },
+    {
+      "change_percent": 59.99724189549029,
+      "configuration": "C2 sensors+EKF",
+      "mean": 14.54379349756848,
+      "metric": "max_V_error",
+      "p95": 21.120363261701915
+    },
+    {
+      "change_percent": 47.904105675808765,
+      "configuration": "C2 sensors+EKF",
+      "mean": 51.82589236863507,
+      "metric": "max_h_error",
+      "p95": 84.64454823129661
+    },
+    {
+      "change_percent": 27.129635581231135,
+      "configuration": "C2 sensors+EKF",
+      "mean": 2.1818145123993578,
+      "metric": "max_load_factor",
+      "p95": 4.0
+    },
+    {
+      "change_percent": 160.20155779205925,
+      "configuration": "C2 sensors+EKF",
+      "mean": 34.73159499485732,
+      "metric": "overshoot_h",
+      "p95": 55.34769024339144
+    },
+    {
+      "change_percent": 204.2855250095089,
+      "configuration": "C2 sensors+EKF",
+      "mean": 6.280589165807394,
+      "metric": "rmse_V",
+      "p95": 9.516568716199401
+    },
+    {
+      "change_percent": 148.94858922560655,
+      "configuration": "C2 sensors+EKF",
+      "mean": 19.29714321189546,
+      "metric": "rmse_h",
+      "p95": 32.983239809586586
+    },
+    {
+      "change_percent": 44.23166516207475,
+      "configuration": "C2 sensors+EKF",
+      "mean": 0.22598263327187867,
+      "metric": "rmse_phi",
+      "p95": 0.32331306478173516
+    },
+    {
+      "change_percent": 143.7574424100712,
+      "configuration": "C2 sensors+EKF",
+      "mean": 0.2273790083956103,
+      "metric": "rmse_theta",
+      "p95": 0.3120291441827791
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C2 sensors+EKF",
+      "mean": 0.09293448166614056,
+      "metric": "saturation_fraction",
+      "p95": 0.2966376793394655
+    },
+    {
+      "change_percent": 24.515235457079516,
+      "configuration": "C2 sensors+EKF",
+      "mean": 14.98333333333907,
+      "metric": "settling_time_h",
+      "p95": 20.000000000027363
+    },
+    {
+      "change_percent": -0.3238979420412397,
+      "configuration": "C3 steady wind",
+      "mean": 2.843809883159412,
+      "metric": "control_effort",
+      "p95": 3.552138711360524
+    },
+    {
+      "change_percent": 38.01568795061393,
+      "configuration": "C3 steady wind",
+      "mean": 7.466322405396819,
+      "metric": "control_rate_effort",
+      "p95": 9.598443418774366
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C3 steady wind",
+      "mean": 0.0,
+      "metric": "disturbance_recovery_time",
+      "p95": 0.0
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C3 steady wind",
+      "mean": 0.0,
+      "metric": "envelope_violations",
+      "p95": 0.0
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C3 steady wind",
+      "mean": 0.0,
+      "metric": "integration_failures",
+      "p95": 0.0
+    },
+    {
+      "change_percent": 6.440275896506404,
+      "configuration": "C3 steady wind",
+      "mean": 9.675450489791464,
+      "metric": "max_V_error",
+      "p95": 12.890023907565258
+    },
+    {
+      "change_percent": 0.318492062192411,
+      "configuration": "C3 steady wind",
+      "mean": 35.15179885266242,
+      "metric": "max_h_error",
+      "p95": 50.166942841328236
+    },
+    {
+      "change_percent": -0.00014333098263919947,
+      "configuration": "C3 steady wind",
+      "mean": 1.7162098948903861,
+      "metric": "max_load_factor",
+      "p95": 1.9995989811742778
+    },
+    {
+      "change_percent": 0.01509231885287561,
+      "configuration": "C3 steady wind",
+      "mean": 13.34997264915557,
+      "metric": "overshoot_h",
+      "p95": 31.884690506273472
+    },
+    {
+      "change_percent": 1.133922082385096,
+      "configuration": "C3 steady wind",
+      "mean": 2.087449330054026,
+      "metric": "rmse_V",
+      "p95": 2.9766389745074395
+    },
+    {
+      "change_percent": 0.35376940450049343,
+      "configuration": "C3 steady wind",
+      "mean": 7.778879430793692,
+      "metric": "rmse_h",
+      "p95": 11.304680751863252
+    },
+    {
+      "change_percent": -0.0003429823493361687,
+      "configuration": "C3 steady wind",
+      "mean": 0.15667978175069644,
+      "metric": "rmse_phi",
+      "p95": 0.21823991197459278
+    },
+    {
+      "change_percent": -0.052961635070794676,
+      "configuration": "C3 steady wind",
+      "mean": 0.09323144454914362,
+      "metric": "rmse_theta",
+      "p95": 0.09602847116783865
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C3 steady wind",
+      "mean": 0.0,
+      "metric": "saturation_fraction",
+      "p95": 0.0
+    },
+    {
+      "change_percent": -2.952393638891627e-14,
+      "configuration": "C3 steady wind",
+      "mean": 12.03333333333641,
+      "metric": "settling_time_h",
+      "p95": 14.200000000020125
+    },
+    {
+      "change_percent": -10.917755490347831,
+      "configuration": "C4 turbulence",
+      "mean": 2.54156173967624,
+      "metric": "control_effort",
+      "p95": 3.443167890163959
+    },
+    {
+      "change_percent": 284.6411194367342,
+      "configuration": "C4 turbulence",
+      "mean": 20.808175148284853,
+      "metric": "control_rate_effort",
+      "p95": 28.302444831312112
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C4 turbulence",
+      "mean": 0.0,
+      "metric": "disturbance_recovery_time",
+      "p95": 0.0
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C4 turbulence",
+      "mean": 5.555555555555555,
+      "metric": "envelope_violations",
+      "p95": 14.449999999999996
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C4 turbulence",
+      "mean": 0.0,
+      "metric": "integration_failures",
+      "p95": 0.0
+    },
+    {
+      "change_percent": 14.506415310765103,
+      "configuration": "C4 turbulence",
+      "mean": 10.408664791324265,
+      "metric": "max_V_error",
+      "p95": 14.994553544827681
+    },
+    {
+      "change_percent": 7.666774301144833,
+      "configuration": "C4 turbulence",
+      "mean": 37.72665154299304,
+      "metric": "max_h_error",
+      "p95": 54.54938395422464
+    },
+    {
+      "change_percent": 0.9801629393810031,
+      "configuration": "C4 turbulence",
+      "mean": 1.7330340322167992,
+      "metric": "max_load_factor",
+      "p95": 2.055050922996688
+    },
+    {
+      "change_percent": 46.95316749627306,
+      "configuration": "C4 turbulence",
+      "mean": 19.615247272158133,
+      "metric": "overshoot_h",
+      "p95": 39.48939070767536
+    },
+    {
+      "change_percent": 28.981361925051694,
+      "configuration": "C4 turbulence",
+      "mean": 2.662232928340075,
+      "metric": "rmse_V",
+      "p95": 3.6705900582281434
+    },
+    {
+      "change_percent": 21.386202850508067,
+      "configuration": "C4 turbulence",
+      "mean": 9.409199496333237,
+      "metric": "rmse_h",
+      "p95": 13.24973071688309
+    },
+    {
+      "change_percent": 10.877858375675107,
+      "configuration": "C4 turbulence",
+      "mean": 0.17372378235476413,
+      "metric": "rmse_phi",
+      "p95": 0.2366228732176496
+    },
+    {
+      "change_percent": 11.943933718321642,
+      "configuration": "C4 turbulence",
+      "mean": 0.10442225022182232,
+      "metric": "rmse_theta",
+      "p95": 0.11986604242794145
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C4 turbulence",
+      "mean": 0.0,
+      "metric": "saturation_fraction",
+      "p95": 0.0
+    },
+    {
+      "change_percent": 22.530009233629645,
+      "configuration": "C4 turbulence",
+      "mean": 14.744444444450542,
+      "metric": "settling_time_h",
+      "p95": 20.000000000027363
+    },
+    {
+      "change_percent": 135.3744394843764,
+      "configuration": "C5 realistic",
+      "mean": 6.715352460909467,
+      "metric": "control_effort",
+      "p95": 11.331397391288219
+    },
+    {
+      "change_percent": 1239.7376460576188,
+      "configuration": "C5 realistic",
+      "mean": 72.476639088253,
+      "metric": "control_rate_effort",
+      "p95": 91.56208609634226
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C5 realistic",
+      "mean": 0.0,
+      "metric": "disturbance_recovery_time",
+      "p95": 0.0
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C5 realistic",
+      "mean": 167.22222222222223,
+      "metric": "envelope_violations",
+      "p95": 404.59999999999974
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C5 realistic",
+      "mean": 0.0,
+      "metric": "integration_failures",
+      "p95": 0.0
+    },
+    {
+      "change_percent": 62.17374815314272,
+      "configuration": "C5 realistic",
+      "mean": 14.741638517785386,
+      "metric": "max_V_error",
+      "p95": 19.305378908273514
+    },
+    {
+      "change_percent": 36.24118203430452,
+      "configuration": "C5 realistic",
+      "mean": 47.73918076190601,
+      "metric": "max_h_error",
+      "p95": 71.37696241915944
+    },
+    {
+      "change_percent": 57.913605557763475,
+      "configuration": "C5 realistic",
+      "mean": 2.7101328084204965,
+      "metric": "max_load_factor",
+      "p95": 4.0
+    },
+    {
+      "change_percent": 160.30480096658877,
+      "configuration": "C5 realistic",
+      "mean": 34.74537585056844,
+      "metric": "overshoot_h",
+      "p95": 60.245855179419166
+    },
+    {
+      "change_percent": 161.95367915865862,
+      "configuration": "C5 realistic",
+      "mean": 5.406840957077549,
+      "metric": "rmse_V",
+      "p95": 7.096776170315223
+    },
+    {
+      "change_percent": 110.4030673716517,
+      "configuration": "C5 realistic",
+      "mean": 16.309303603296847,
+      "metric": "rmse_h",
+      "p95": 22.640911724360638
+    },
+    {
+      "change_percent": 75.85074061672842,
+      "configuration": "C5 realistic",
+      "mean": 0.27552350160225214,
+      "metric": "rmse_phi",
+      "p95": 0.46251081818699696
+    },
+    {
+      "change_percent": 127.73027348085775,
+      "configuration": "C5 realistic",
+      "mean": 0.21242872937035365,
+      "metric": "rmse_theta",
+      "p95": 0.31276589978707703
+    },
+    {
+      "change_percent": NaN,
+      "configuration": "C5 realistic",
+      "mean": 0.0,
+      "metric": "saturation_fraction",
+      "p95": 0.0
+    },
+    {
+      "change_percent": 23.638042474626133,
+      "configuration": "C5 realistic",
+      "mean": 14.87777777778382,
+      "metric": "settling_time_h",
+      "p95": 20.000000000027363
+    }
+  ],
+  "tracking_score_change_percent": {
+    "C1 actuators": -0.05294228101505642,
+    "C2 sensors+EKF": 177.48944526197272,
+    "C3 steady wind": 0.7561448694673669,
+    "C4 turbulence": 25.303520256126156,
+    "C5 realistic": 136.9910699192661
+  }
+}
