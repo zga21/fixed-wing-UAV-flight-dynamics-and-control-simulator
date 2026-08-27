@@ -1,0 +1,36 @@
+ideal: false
+
+gyro:
+  rate_hz: 200.0
+  sigma_noise: 0.01
+  sigma_bias_walk: 0.001
+
+accelerometer:
+  rate_hz: 200.0
+  sigma_noise: 0.05
+  sigma_bias_walk: 0.005
+
+gps_position:
+  rate_hz: 5.0
+  sigma_noise: 2.0
+  sigma_bias_walk: 0.0
+
+gps_velocity:
+  rate_hz: 5.0
+  sigma_noise: 0.2
+  sigma_bias_walk: 0.0
+
+pitot:
+  rate_hz: 50.0
+  sigma_noise: 0.5
+  sigma_bias_walk: 0.1
+
+barometer:
+  rate_hz: 50.0
+  sigma_noise: 0.5
+  sigma_bias_walk: 0.2
+
+magnetometer:
+  rate_hz: 50.0
+  sigma_noise: 0.03490658503988659
+  sigma_bias_walk: 0.017453292519943295

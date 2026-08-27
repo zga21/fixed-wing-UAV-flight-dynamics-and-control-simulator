@@ -70,7 +70,10 @@ def compute_metrics(
     cfg = load_aircraft("config/aircraft_v1.yaml") if cfg is None else cfg
     refs = scenario.reference_history(result.t)
     altitude = -result.x[:, 2]
-    airspeed = np.linalg.norm(result.x[:, IDX_VEL], axis=1)
+    airspeed = np.asarray(
+        result.diagnostics.get("V", np.linalg.norm(result.x[:, IDX_VEL], axis=1)),
+        dtype=np.float64,
+    )
     euler = np.asarray([quat_to_euler(row[IDX_QUAT]) for row in result.x])
     phi = euler[:, 0]
     theta = euler[:, 1]
@@ -171,6 +174,8 @@ def _settling_time(t: np.ndarray, h_error: np.ndarray, scenario: Scenario) -> fl
 
 
 def _saturation_fraction(result: SimResult, cfg: AircraftConfig) -> float:
+    if "actuator_saturated" in result.diagnostics:
+        return float(np.mean(result.diagnostics["actuator_saturated"]))
     if result.u_actual.size == 0:
         return 0.0
     controls = result.u_actual[:, 0:3]
@@ -190,17 +195,23 @@ def _saturation_fraction(result: SimResult, cfg: AircraftConfig) -> float:
 def _envelope_metrics(result: SimResult, cfg: AircraftConfig) -> tuple[int, float]:
     violations = 0
     max_load_factor = 1.0
-    for row in result.x:
+    logged_V = result.diagnostics.get("V")
+    logged_alpha = result.diagnostics.get("alpha")
+    logged_beta = result.diagnostics.get("beta")
+    for index, row in enumerate(result.x):
         altitude = -row[2]
         air = compute_air_data(row[IDX_VEL], row[IDX_QUAT], altitude)
+        V = air.V if logged_V is None else float(logged_V[index])
+        alpha = air.alpha if logged_alpha is None else float(logged_alpha[index])
+        beta = air.beta if logged_beta is None else float(logged_beta[index])
         phi, _theta, _psi = quat_to_euler(row[IDX_QUAT])
-        if not (cfg.envelope.V_min <= air.V <= cfg.envelope.V_max):
+        if not (cfg.envelope.V_min <= V <= cfg.envelope.V_max):
             violations += 1
         if not (cfg.envelope.h_min <= altitude <= cfg.envelope.h_max):
             violations += 1
-        if not (cfg.envelope.alpha_min_rad <= air.alpha <= cfg.envelope.alpha_max_rad):
+        if not (cfg.envelope.alpha_min_rad <= alpha <= cfg.envelope.alpha_max_rad):
             violations += 1
-        if abs(air.beta) > cfg.envelope.beta_max_rad:
+        if abs(beta) > cfg.envelope.beta_max_rad:
             violations += 1
         if abs(phi) > cfg.envelope.phi_max_rad:
             violations += 1

@@ -10,13 +10,38 @@ from uav_sim.rotations import quat_derivative, quat_to_dcm
 from uav_sim.state import IDX_OMEGA, IDX_POS, IDX_QUAT, IDX_VEL, N_STATES
 
 
-def gravity_body(quat: np.ndarray, mass: float) -> np.ndarray:
+def _cross(a: np.ndarray, b: np.ndarray) -> np.ndarray:
+    """Explicit 3-vector cross product.
+
+    ``np.cross`` routes 3-vectors through ``moveaxis``/``normalize_axis_tuple``
+    and is ~10x slower than this on scalars; it dominated the RK4 hot loop
+    (two calls per derivative, four derivatives per step). Bit-identical to
+    ``np.cross`` for (3,) float64 inputs.
+    """
+    return np.array(
+        [
+            a[1] * b[2] - a[2] * b[1],
+            a[2] * b[0] - a[0] * b[2],
+            a[0] * b[1] - a[1] * b[0],
+        ],
+        dtype=np.float64,
+    )
+
+
+def gravity_body(
+    quat: np.ndarray, mass: float, dcm: np.ndarray | None = None
+) -> np.ndarray:
     """Gravity force in the body frame.
 
     Implements ``F_grav_b = m * R_nb.T @ [0, 0, g]``.
+
+    ``dcm`` optionally supplies a precomputed ``R_nb = quat_to_dcm(quat)`` so the
+    caller can build the matrix once per derivative and reuse it (bit-identical
+    to recomputing it).
     """
     gravity_n = np.array([0.0, 0.0, G0], dtype=np.float64)
-    return mass * (quat_to_dcm(quat).T @ gravity_n)
+    rotation = quat_to_dcm(quat) if dcm is None else dcm
+    return mass * (rotation.T @ gravity_n)
 
 
 def rigid_body_derivatives(
@@ -24,6 +49,7 @@ def rigid_body_derivatives(
     F_b: np.ndarray,
     M_b: np.ndarray,
     cfg: AircraftConfig,
+    dcm: np.ndarray | None = None,
 ) -> np.ndarray:
     """Nonlinear 6-DOF rigid-body state derivative.
 
@@ -59,12 +85,13 @@ def rigid_body_derivatives(
     vel_b = state[IDX_VEL]
     omega_b = state[IDX_OMEGA]
 
+    rotation = quat_to_dcm(quat) if dcm is None else dcm
     xdot = np.zeros(N_STATES, dtype=np.float64)
-    xdot[IDX_POS] = quat_to_dcm(quat) @ vel_b
-    xdot[IDX_VEL] = force_b / cfg.mass.m - np.cross(omega_b, vel_b)
+    xdot[IDX_POS] = rotation @ vel_b
+    xdot[IDX_VEL] = force_b / cfg.mass.m - _cross(omega_b, vel_b)
     xdot[IDX_QUAT] = quat_derivative(quat, omega_b)
     angular_momentum_b = cfg.mass.inertia_tensor @ omega_b
     xdot[IDX_OMEGA] = cfg.mass.inertia_inverse @ (
-        moment_b - np.cross(omega_b, angular_momentum_b)
+        moment_b - _cross(omega_b, angular_momentum_b)
     )
     return xdot

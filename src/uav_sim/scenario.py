@@ -151,16 +151,17 @@ def _initial_trimmed_state(
     cfg: AircraftConfig,
     plant: AircraftPlant,
 ) -> np.ndarray:
+    trim_plant = AircraftPlant(cfg, aero_model=plant.aero_model)
     point = trim(
         scenario.initial.V,
         0.0,
         scenario.initial.altitude,
         cfg,
-        plant,
+        trim_plant,
     )
     x0 = point.x.copy()
     x0[IDX_QUAT] = euler_to_quat(0.0, point.theta, scenario.initial.heading)
-    return x0
+    return plant.adjust_initial_state(x0)
 
 
 def _heading_from_mapping(data: dict[str, Any]) -> float:

@@ -1,0 +1,15 @@
+actuators:
+  ideal: false
+
+sensors:
+  ideal: false
+  spec_path: config/sensors_v1.yaml
+
+estimator:
+  mode: ekf
+
+wind:
+  steady_speed: 5.0
+  direction_deg: 45.0
+  shear_exponent: 0.0
+  turbulence: moderate

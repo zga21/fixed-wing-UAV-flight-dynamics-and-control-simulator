@@ -74,6 +74,7 @@ def simulate(
     log_cursor = 0
     terminated = False
     reason: str | None = None
+    diagnostic_log: dict[str, list[Any]] = {}
 
     def log_sample(command: np.ndarray, actual: np.ndarray) -> None:
         nonlocal log_cursor
@@ -81,15 +82,28 @@ def simulate(
         x_log[log_cursor] = x
         u_log[log_cursor] = command
         u_actual_log[log_cursor] = actual
+        if hasattr(plant, "sample_diagnostics"):
+            sample = plant.sample_diagnostics(t, x, actual)
+            for key, value in sample.items():
+                diagnostic_log.setdefault(key, []).append(np.asarray(value).copy())
         log_cursor += 1
 
     command = np.zeros(4, dtype=np.float64)
     actual = np.zeros(4, dtype=np.float64)
+    if hasattr(plant, "reset"):
+        plant.reset(rng, x)
     log_sample(command, actual)
 
     for step in range(n_steps):
-        command = _controller_output(controller, t, x, cfg, rng)
-        actual = command
+        feedback = (
+            plant.feedback_state(t, x, dt) if hasattr(plant, "feedback_state") else x
+        )
+        command = _controller_output(controller, t, feedback, cfg, rng)
+        actual = (
+            plant.prepare_step(t, x, command, dt)
+            if hasattr(plant, "prepare_step")
+            else command
+        )
 
         def wrapped_derivative(
             t_stage: float,
@@ -119,7 +133,7 @@ def simulate(
         x=x_log[:log_cursor].copy(),
         u=u_log[:log_cursor].copy(),
         u_actual=u_actual_log[:log_cursor].copy(),
-        diagnostics={},
+        diagnostics={key: np.asarray(values) for key, values in diagnostic_log.items()},
         terminated_early=terminated,
         termination_reason=reason,
     )
