@@ -1,5 +1,16 @@
 # Project Change Log
 
+## 2026-08-27 - Phase 6 Guarded Nonlinear Dynamic Inversion
+
+- Added a controller-owned control-affine angular model with isolated model
+  perturbations and control-effectiveness health diagnostics.
+- Added guarded NDI with virtual-acceleration limiting, low-speed PID blending,
+  integral mismatch rejection, and saturation-aware multiaxis allocation.
+- Froze and enforced a paired controller fairness protocol, including identical
+  scenarios, seeds, plant realism, metrics, config hash, and git commit.
+- Added resumable PID/NDI comparison and five-parameter mismatch campaigns,
+  speed-independence reporting, focused unit tests, and the Phase 6 gate.
+
 ## 2026-08-26 - Phase 4 Baseline Cascaded PID
 
 - Added the controller protocol, `Reference` and `Controls` data contracts, and

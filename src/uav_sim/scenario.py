@@ -141,6 +141,26 @@ def run_scenario(
         rng=np.random.default_rng(seed),
     )
     metrics = compute_metrics(result, scenario, cfg)
+    diagnostic_history = getattr(controller, "diagnostic_history", ())
+    if diagnostic_history:
+        result.diagnostics["ndi_condition_number"] = np.asarray(
+            [sample.condition_number for sample in diagnostic_history], dtype=np.float64
+        )
+        result.diagnostics["ndi_minimum_singular_value"] = np.asarray(
+            [sample.minimum_singular_value for sample in diagnostic_history],
+            dtype=np.float64,
+        )
+        result.diagnostics["ndi_guard_flags"] = np.asarray(
+            [
+                [sample.q_bar_clamped, sample.damped_inverse]
+                for sample in diagnostic_history
+            ],
+            dtype=bool,
+        )
+        result.diagnostics["ndi_allocation_residual_norm"] = np.asarray(
+            [sample.allocation_residual_norm for sample in diagnostic_history],
+            dtype=np.float64,
+        )
     result.diagnostics["reference"] = scenario.reference_history(result.t)
     result.diagnostics["metrics"] = metrics.to_dict()
     return result, metrics

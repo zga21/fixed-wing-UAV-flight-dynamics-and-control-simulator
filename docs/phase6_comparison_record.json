@@ -1,0 +1,42 @@
+{
+  "config_hash": "0f311f88ab1f",
+  "controller_version": "robust_ndi_v4_screened",
+  "dirty_worktree": true,
+  "effective_flights": 36,
+  "git_commit": "54ec602679935d317d540d2a8570d8cffda96487",
+  "provisional_until_phase7": true,
+  "realism": "C5 realistic",
+  "scenarios": [
+    "config/scenarios/mission_a.yaml",
+    "config/scenarios/step_responses.yaml",
+    "config/scenarios/disturbance_rejection.yaml"
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "summary": [
+    {
+      "control_effort_mean": 5.750838546227845,
+      "controller": "NDI",
+      "flights": 18,
+      "saturation_fraction_mean": 0.0,
+      "success_rate": 0.0,
+      "tracking_score_mean": 35.95742502923187,
+      "tracking_score_p95": 48.46321361559451
+    },
+    {
+      "control_effort_mean": 6.715352460906527,
+      "controller": "PID",
+      "flights": 18,
+      "saturation_fraction_mean": 0.0,
+      "success_rate": 0.0,
+      "tracking_score_mean": 37.93666743158372,
+      "tracking_score_p95": 50.32463265021672
+    }
+  ]
+}

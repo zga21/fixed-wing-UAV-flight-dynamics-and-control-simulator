@@ -105,9 +105,10 @@ class CascadedPIDAutopilot:
             self.loop_counts["attitude"] += 1
 
         if t + 1e-12 >= self._next_rate:
-            self._last_surfaces = self.rate_loop.update(
+            self._last_surfaces = self._rate_surfaces(
                 self._last_omega_cmd,
-                x_hat[IDX_OMEGA],
+                x_hat,
+                air,
                 1.0 / self.rates.rate_hz,
             )
             self._next_rate += 1.0 / self.rates.rate_hz
@@ -123,6 +124,16 @@ class CascadedPIDAutopilot:
             float(controls[2]),
             float(controls[3]),
         )
+
+    def _rate_surfaces(
+        self,
+        omega_cmd: np.ndarray,
+        x_hat: np.ndarray,
+        _air,
+        dt: float,
+    ) -> np.ndarray:
+        """Return surface increments from the baseline body-rate controller."""
+        return self.rate_loop.update(omega_cmd, x_hat[IDX_OMEGA], dt)
 
     def __call__(
         self, t: float, x_hat: np.ndarray, cfg: AircraftConfig, _rng
